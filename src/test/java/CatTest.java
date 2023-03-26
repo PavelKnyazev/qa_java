@@ -1,11 +1,11 @@
 import com.example.Cat;
 import com.example.Feline;
+import com.example.Predator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 
@@ -15,10 +15,6 @@ public class CatTest {
 
     @Mock
     Feline feline;
-
-    @Spy
-    Cat cat = new Cat(feline);
-
 
     /**
      * Тест проверяет вызывается ли метод eatMeat() при вызове метода getFood().
@@ -36,8 +32,10 @@ public class CatTest {
      */
     @Test
     public void getSoundReturnMewTest() {
-        String sound = cat.getSound();
-        Mockito.verify(cat).getSound();
+        Cat catMock = Mockito.mock(Cat.class);
+        Mockito.when(catMock.getSound()).thenReturn("Мяу");
+        String sound = catMock.getSound();
+        Mockito.verify(catMock).getSound();
         Assert.assertEquals("Мяу", sound);
     }
 

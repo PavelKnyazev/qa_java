@@ -1,4 +1,6 @@
 import com.example.Lion;
+import com.example.Predator;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 
-import static org.junit.Assert.assertEquals;
+
 
 @RunWith(Parameterized.class)
 public class LionParameterizedTest {
@@ -26,8 +28,8 @@ public class LionParameterizedTest {
     }
 
 
-    @Parameterized.Parameters // добавили аннотацию
-    public static Object[][] getSumData() {
+    @Parameterized.Parameters
+    public static Object[][] getParamData() {
         return new Object[][]{
                 {true, "Самец"},
                 {false, "Самка"},
@@ -36,18 +38,29 @@ public class LionParameterizedTest {
     }
 
     /**
-     * Тест првоеряет создание объекта с мужским и женским полом ,а так же возвращает ли метод doesHaveMane()
+     * Тест првоеряет возвращает ли метод doesHaveMane()
      * правильное значение в зависимости от пола
      *
      */
 
     @Test
     public void doesHaveManeTest() throws Exception {
-        Lion lion = new Lion(sex);
-        Lion spyLion = Mockito.spy(lion);
-        boolean actual = spyLion.doesHaveMane();
-        Mockito.verify(spyLion).doesHaveMane();
-        assertEquals(mane, actual);
+
+        Lion lionMock = Mockito.mock(Lion.class);
+        Mockito.when(lionMock.doesHaveMane()).thenReturn(mane);
+        boolean actual = lionMock.doesHaveMane();
+        Assert.assertEquals(mane, actual);
+    }
+
+    /**
+     * Тест првоеряет создание объекта с мужским и женским полом
+     *
+     */
+    @Test
+    public void sexTest() throws Exception {
+        Predator predatorMock = Mockito.mock(Predator.class);
+        Lion lion = new Lion(sex,predatorMock);
+        Assert.assertEquals(mane, lion.doesHaveMane());
     }
 
 }

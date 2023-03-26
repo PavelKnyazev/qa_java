@@ -2,20 +2,20 @@ package com.example;
 
 import java.util.List;
 
-public class Lion extends Animal {
+public class Lion extends Animal{
 
     boolean hasMane;
     Predator predator;
 
-    public Lion(Predator predator) {
-        this.predator = predator;
-    }
 
-    public Lion(String sex) throws Exception {
+
+    public Lion(String sex,Predator predator) throws Exception {
         if ("Самец".equals(sex)) {
             hasMane = true;
+            this.predator = predator;
         } else if ("Самка".equals(sex)) {
             hasMane = false;
+            this.predator = predator;
         } else {
             throw new Exception("Используйте допустимые значения пола животного - самец или самка");
         }
@@ -23,7 +23,7 @@ public class Lion extends Animal {
 
 
     public int getKittens() {
-        return predator.getKittens1();
+        return predator.getKittens();
     }
 
     public boolean doesHaveMane() {
@@ -33,4 +33,7 @@ public class Lion extends Animal {
     public List<String> getFood() throws Exception {
         return getFood("Хищник");
     }
+
+
+
 }
