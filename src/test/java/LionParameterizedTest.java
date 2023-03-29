@@ -5,10 +5,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 
-
+import static org.junit.Assert.assertEquals;
 
 
 @RunWith(Parameterized.class)
@@ -21,6 +23,9 @@ public class LionParameterizedTest {
         this.mane = mane;
         this.sex = sex;
     }
+
+    @Mock
+    Predator predator;
 
     @Before
     public void init() {
@@ -38,29 +43,13 @@ public class LionParameterizedTest {
     }
 
     /**
-     * Тест првоеряет возвращает ли метод doesHaveMane()
-     * правильное значение в зависимости от пола
-     *
-     */
-
-    @Test
-    public void doesHaveManeTest() throws Exception {
-
-        Lion lionMock = Mockito.mock(Lion.class);
-        Mockito.when(lionMock.doesHaveMane()).thenReturn(mane);
-        boolean actual = lionMock.doesHaveMane();
-        Assert.assertEquals(mane, actual);
-    }
-
-    /**
      * Тест првоеряет создание объекта с мужским и женским полом
      *
      */
     @Test
-    public void sexTest() throws Exception {
-        Predator predatorMock = Mockito.mock(Predator.class);
-        Lion lion = new Lion(sex,predatorMock);
-        Assert.assertEquals(mane, lion.doesHaveMane());
+    public void doesHaveManeTest() throws Exception {
+        Lion lion = new Lion(sex,predator);
+        assertEquals(mane, lion.doesHaveMane());
     }
 
 }

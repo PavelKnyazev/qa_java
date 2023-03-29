@@ -32,6 +32,7 @@ public class LionTest {
         Lion lion = new Lion("Самец",predator);
         Mockito.when(predator.getKittens()).thenReturn(3);
         Assert.assertEquals(3, lion.getKittens());
+        Mockito.verify(predator).getKittens();
     }
 
     /**

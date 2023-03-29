@@ -6,7 +6,6 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
-
 @RunWith(MockitoJUnitRunner.class)
 public class FelineTest {
 
@@ -26,14 +25,11 @@ public class FelineTest {
     }
 
     /**
-     * Тест проверяет вызывается ли getFamily() и возвращает ли он "Кошачьи"
+     * Тест проверяет  getFamily()
      */
     @Test
     public void getFamilyTest() {
-        Feline feelineMock = Mockito.mock(Feline.class);
-        Mockito.when(feelineMock.getFamily()).thenReturn("Кошачьи");
-        String actual = feelineMock.getFamily();
-        Mockito.verify(feelineMock).getFamily();
+        String actual = feline.getFamily();
         Assert.assertEquals("Кошачьи", actual);
     }
 
@@ -42,19 +38,19 @@ public class FelineTest {
      */
     @Test
     public void getKittensArgumentTest() {
-        Feline feelineMock = Mockito.mock(Feline.class);
+
         int argument = 1;
-        Mockito.when(feelineMock.getKittens(argument)).thenReturn(argument);
-        int actualy = feelineMock.getKittens(argument);
-        Mockito.verify(feelineMock).getKittens(Mockito.anyInt());
+        int actualy = feline.getKittens(argument);
+        Mockito.verify(feline).getKittens(Mockito.anyInt());
         Assert.assertEquals(argument, actualy);
+
     }
 
     /**
      * Тест проверяет что метод getKittens() без параметра вызывается и вызывает getKittens() с параметром.
      */
     @Test
-    public void getKittensTestNoArgumentTest() {
+    public void getKittensNoArgumentTest() {
         feline.getKittens();
         Mockito.verify(feline).getKittens();
         Mockito.verify(feline).getKittens(Mockito.anyInt());

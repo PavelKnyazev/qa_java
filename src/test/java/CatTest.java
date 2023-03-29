@@ -1,6 +1,5 @@
 import com.example.Cat;
 import com.example.Feline;
-import com.example.Predator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,14 +27,12 @@ public class CatTest {
     }
 
     /**
-     * Тест проверяет, что метод getSound() вызывается и возвращает строку "Мяу".
+     * Тест проверяет метод getSound()
      */
     @Test
     public void getSoundReturnMewTest() {
-        Cat catMock = Mockito.mock(Cat.class);
-        Mockito.when(catMock.getSound()).thenReturn("Мяу");
-        String sound = catMock.getSound();
-        Mockito.verify(catMock).getSound();
+        Cat cat = new Cat(feline);
+        String sound = cat.getSound();
         Assert.assertEquals("Мяу", sound);
     }
 
