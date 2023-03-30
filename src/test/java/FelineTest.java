@@ -41,7 +41,7 @@ public class FelineTest {
 
         int argument = 1;
         int actualy = feline.getKittens(argument);
-        Mockito.verify(feline).getKittens(Mockito.anyInt());
+        Mockito.verify(feline).getKittens(argument);
         Assert.assertEquals(argument, actualy);
 
     }
@@ -53,6 +53,6 @@ public class FelineTest {
     public void getKittensNoArgumentTest() {
         feline.getKittens();
         Mockito.verify(feline).getKittens();
-        Mockito.verify(feline).getKittens(Mockito.anyInt());
+        Mockito.verify(feline).getKittens(1);
     }
 }
